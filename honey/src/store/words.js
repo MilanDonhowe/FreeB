@@ -6,17 +6,23 @@
 import Words from '@/assets/words.json'
 
 const state = {
-  Words
+  validWords: new Set(Words['dictionary'])
 }
 
 const getters = {
+  // Check if word is real
   isValidWord: (state) => (word) => {
-    return state.Words.includes(word)
+    return state.validWords.includes(word)
   }
 }
 
-const mutations = {}
-const actions = {}
+const mutations = {
+
+}
+
+const actions = {
+
+}
 
 
 export default {

@@ -5,8 +5,10 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-new Vue({
+const vue = new Vue({
   store,
   router,
   render: h => h(App)
 }).$mount('#app')
+
+console.log(vue)
