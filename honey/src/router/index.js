@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Game from '../views/Game.vue'
+import GameView from '../views/GameView.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Play',
-    component: Game
+    component: GameView
   }
   //,
   //{

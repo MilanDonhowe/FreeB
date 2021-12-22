@@ -4,7 +4,7 @@
 -->
 <template>
   <div>
-    <Board :characterSet="this.characterSet" v-on:add-letter="addToPattern"/>
+    <Board :otherLetters="this.characterSet" :mainLetter="this.targetCharacter" v-on:add-letter="addToPattern"/>
   </div>
 </template>
 <script>
