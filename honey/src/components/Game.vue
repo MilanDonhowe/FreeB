@@ -3,8 +3,13 @@
   Description: Entry point component for displaying 7 character the game.
 -->
 <template>
-  <div>
-    <Board :otherLetters="this.characterSet" :mainLetter="this.targetCharacter" v-on:add-letter="addToPattern"/>
+  <div class="flex flex-row basis-2 flex-nowrap justify-around justify-items-center">
+    <Board class="" :otherLetters="this.characterSet" :mainLetter="this.targetCharacter" v-on:add-letter="addToPattern"/>
+    <div class="">
+      <p>{{currentPattern}}</p>
+      <button @click="clearPattern">Clear</button>
+      <button>Try</button>
+    </div>
   </div>
 </template>
 <script>
@@ -51,7 +56,7 @@ export default {
     },
 
     addToPattern(char){
-      if (this.characterSet.includes(char)) this.currentPattern += char
+      if (this.characterSet.includes(char) || char == this.targetCharacter) this.currentPattern += char
     },
 
     checkPattern() {
@@ -65,3 +70,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+* {
+  text-align: center;
+}
+</style>

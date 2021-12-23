@@ -1,6 +1,5 @@
 <template>
   <div class="game-view">
-    <h1>Spelling B</h1>
     <Game />
   </div>
 </template>
