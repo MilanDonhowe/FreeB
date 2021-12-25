@@ -3,12 +3,20 @@
   Description: Entry point component for displaying 7 character the game.
 -->
 <template>
-  <div class="flex flex-row basis-2 flex-nowrap justify-around justify-items-center">
+  <div class="block mx-auto">
     <Board class="" :otherLetters="this.characterSet" :mainLetter="this.targetCharacter" v-on:add-letter="addToPattern"/>
     <div class="">
-      <p>{{currentPattern}}</p>
-      <button @click="clearPattern">Clear</button>
-      <button>Try</button>
+      <h2 class="h-5 pb-10 px-6 text-left">Current Try: {{currentPattern}}</h2>
+      <div class="flex flex-row justify-around w-64">
+        <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" @click="clearPattern">Clear</button>
+        <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" @click="checkPattern">Try</button>
+      </div>
+    </div>
+    <div class="w-100 basis-100">
+      <h2 class="text-left">Found Words:</h2>
+      <h3 v-for="found in readWords" :key="readWords.indexOf(found)">
+        {{found}}
+      </h3>
     </div>
   </div>
 </template>
@@ -25,6 +33,7 @@ export default {
       characterSet: [],
       targetCharacter: '',
       readWords: [],
+      remainingWords: [],
       score: 0,
       currentPattern: ''
     }
@@ -59,8 +68,23 @@ export default {
       if (this.characterSet.includes(char) || char == this.targetCharacter) this.currentPattern += char
     },
 
+    _validPattern() {
+      if (this.currentPattern.includes(this.targetCharacter)){
+        if (this.$store.getters['WordModule/isValidWord'](this.currentPattern)){
+          if (!this.readWords.includes(this.currentPattern)){
+            return true
+          }
+        }
+      }
+      return false
+    },
+
     checkPattern() {
-      // if this.$store['WordModule/']
+      if (this._validPattern()) {
+        this.readWords.push(this.currentPattern)
+      } else {
+        // display error message
+      }
       this.clearPattern()
     },
 
@@ -74,4 +98,8 @@ export default {
 * {
   text-align: center;
 }
+.debug {
+  background: red;
+}
+
 </style>

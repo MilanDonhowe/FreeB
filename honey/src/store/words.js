@@ -12,12 +12,12 @@ const state = {
 const getters = {
   // Check if word is real
   isValidWord: (state) => (word) => {
-    return state.validWords.includes(word)
+    return state.validWords.has(word)
   }
 }
 
 const mutations = {
-
+  // getWordSet
 }
 
 const actions = {
